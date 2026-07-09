@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ceremony &mdash; 18th Birthday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="marble-bg"></div>
+<div class="marble-veins"></div>
+<div class="stars-field" id="starsField"></div>
+
+<!-- reusable 4-point sparkle shape, referenced everywhere via <use> -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="sparkleShape" viewBox="0 0 100 100">
+    <path d="M50 0C50 28 28 50 0 50C28 50 50 72 50 100C50 72 72 50 100 50C72 50 50 28 50 0Z"/>
+  </symbol>
+</svg>
+
+<audio id="bgm" src="music.mp3" loop preload="auto"></audio>
+
+<section id="details">
+  <div class="card" id="cardCeremony">
+    <a href="index.html" class="back-link">&larr; Back to invitation</a>
+
+    <div class="eyebrow">Ceremony</div>
+
+    <!-- blank on purpose — add your ceremony content here -->
+
+  </div>
+</section>
+
+<script src="js/function.js"></script>
+
+</body>
+</html>
