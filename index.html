@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>18th Birthday Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="marble-bg"></div>
+<div class="marble-veins"></div>
+
+<audio id="bgm" src="music.mp3" loop preload="auto"></audio>
+
+<section id="cover">
+  <div class="cover-title">A little something for you...</div>
+  <div class="cover-sub">tap the music box</div>
+
+  <div class="box-wrap" id="boxWrap">
+    <div class="box-lid">
+      <div class="box-jewel"></div>
+    </div>
+    <div class="ballerina-stage">
+      <div class="spin">
+        <div class="ballerina">
+          <svg viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="82" rx="16" ry="4" fill="#d9c9f0" opacity="0.5"/>
+            <path d="M30 30 C 20 40, 18 55, 26 60 C 30 62, 30 65, 22 72 M30 30 C 40 40, 42 55, 34 60 C 30 62, 30 65, 38 72" fill="none" stroke="#fff" stroke-width="1"/>
+            <path d="M18 58 Q30 50 42 58 Q42 68 30 70 Q18 68 18 58 Z" fill="#e9dcf8"/>
+            <circle cx="30" cy="18" r="7" fill="#f3e6ff"/>
+            <path d="M23 20 Q30 10 37 20 Q34 8 30 8 Q26 8 23 20Z" fill="#4a2a72"/>
+            <path d="M30 25 L22 38 L26 40 L30 30 L34 40 L38 38 Z" fill="#fff"/>
+            <line x1="26" y1="40" x2="20" y2="30" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="34" y1="40" x2="40" y2="30" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="27" y1="60" x2="22" y2="80" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="33" y1="60" x2="40" y2="72" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="box-base"></div>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+  </div>
+
+  <div class="tap-hint">tap to open</div>
+  <div class="scroll-cue" id="scrollCue">keep scrolling<span>&#8595;</span></div>
+</section>
+
+<section id="invitation">
+  <div class="card" id="card">
+    <div class="eyebrow">You are invited to celebrate</div>
+    <div class="num-18">18</div>
+    <div class="invite-line">the birthday of</div>
+    <div class="name-placeholder">Maria Sabine</div>
+
+    <div class="details">
+      Sunday, August 16
+      <span class="label">Date</span>
+      [ Venue / Location Here ]
+      <span class="label">Where</span>
+      5:00 PM
+      <span class="label">Time</span>
+    </div>
+
+    <hr class="divider"/>
+
+    <p class="surprise">
+      
+      <span class="sign"></span>
+    </p>
+  </div>
+</section>
+
+<script src="js/function.js"></script>
+
+</body>
+</html>
