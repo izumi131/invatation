@@ -12,6 +12,14 @@
 
 <div class="marble-bg"></div>
 <div class="marble-veins"></div>
+<div class="stars-field" id="starsField"></div>
+
+<!-- reusable 4-point sparkle shape, referenced everywhere via <use> -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="sparkleShape" viewBox="0 0 100 100">
+    <path d="M50 0C50 28 28 50 0 50C28 50 50 72 50 100C50 72 72 50 100 50C72 50 50 28 50 0Z"/>
+  </symbol>
+</svg>
 
 <audio id="bgm" src="music.mp3" loop preload="auto"></audio>
 
@@ -25,20 +33,7 @@
     </div>
     <div class="ballerina-stage">
       <div class="spin">
-        <div class="ballerina">
-          <svg viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="30" cy="82" rx="16" ry="4" fill="#d9c9f0" opacity="0.5"/>
-            <path d="M30 30 C 20 40, 18 55, 26 60 C 30 62, 30 65, 22 72 M30 30 C 40 40, 42 55, 34 60 C 30 62, 30 65, 38 72" fill="none" stroke="#fff" stroke-width="1"/>
-            <path d="M18 58 Q30 50 42 58 Q42 68 30 70 Q18 68 18 58 Z" fill="#e9dcf8"/>
-            <circle cx="30" cy="18" r="7" fill="#f3e6ff"/>
-            <path d="M23 20 Q30 10 37 20 Q34 8 30 8 Q26 8 23 20Z" fill="#4a2a72"/>
-            <path d="M30 25 L22 38 L26 40 L30 30 L34 40 L38 38 Z" fill="#fff"/>
-            <line x1="26" y1="40" x2="20" y2="30" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-            <line x1="34" y1="40" x2="40" y2="30" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-            <line x1="27" y1="60" x2="22" y2="80" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-            <line x1="33" y1="60" x2="40" y2="72" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
+        <svg class="centerpiece-star"><use href="#sparkleShape"></use></svg>
       </div>
     </div>
     <div class="box-base"></div>
@@ -54,6 +49,23 @@
 
 <section id="invitation">
   <div class="card" id="card">
+    <svg class="card-corner corner-tl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4 C 4 30, 10 50, 30 60 C 45 66, 60 62, 70 50 M4 4 C 20 6, 40 4, 55 14 C 65 20, 68 30, 66 40"/>
+      <circle cx="4" cy="4" r="2.5"/>
+    </svg>
+    <svg class="card-corner corner-tr" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4 C 4 30, 10 50, 30 60 C 45 66, 60 62, 70 50 M4 4 C 20 6, 40 4, 55 14 C 65 20, 68 30, 66 40"/>
+      <circle cx="4" cy="4" r="2.5"/>
+    </svg>
+    <svg class="card-corner corner-bl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4 C 4 30, 10 50, 30 60 C 45 66, 60 62, 70 50 M4 4 C 20 6, 40 4, 55 14 C 65 20, 68 30, 66 40"/>
+      <circle cx="4" cy="4" r="2.5"/>
+    </svg>
+    <svg class="card-corner corner-br" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4 C 4 30, 10 50, 30 60 C 45 66, 60 62, 70 50 M4 4 C 20 6, 40 4, 55 14 C 65 20, 68 30, 66 40"/>
+      <circle cx="4" cy="4" r="2.5"/>
+    </svg>
+
     <div class="eyebrow">You are invited to celebrate</div>
     <div class="num-18">18</div>
     <div class="invite-line">the birthday of</div>
