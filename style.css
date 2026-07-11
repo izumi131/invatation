@@ -438,3 +438,94 @@ hr.divider{
   z-index:2;
 }
 .rsvp-btn{ margin-top:30px; }
+
+/* ---------- RSVP widget ---------- */
+.rsvp-widget{
+  position:relative;
+  z-index:2;
+}
+.rsvp-input{
+  width:100%;
+  max-width:320px;
+  margin:6px auto 18px;
+  display:block;
+  padding:12px 18px;
+  border-radius:999px;
+  border:1.4px solid rgba(64,41,94,0.4);
+  background:rgba(255,255,255,0.45);
+  color:var(--ink);
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.05rem;
+  text-align:center;
+  outline:none;
+  transition:border-color .3s ease, background .3s ease;
+}
+.rsvp-input:focus{
+  border-color:var(--plum);
+  background:rgba(255,255,255,0.7);
+}
+.rsvp-result{
+  margin-top:24px;
+  min-height:0;
+}
+.rsvp-status{
+  font-size:1.05rem;
+  line-height:1.7;
+  color:var(--ink);
+}
+.rsvp-status.not-found{ color:#8a3b3b; }
+.rsvp-status.found{ color:var(--plum); font-weight:600; }
+.rsvp-seats{
+  font-size:0.85rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--violet);
+  margin-top:6px;
+}
+.rsvp-plusone{
+  margin-top:18px;
+}
+.rsvp-choice-row{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-top:22px;
+  flex-wrap:wrap;
+}
+.rsvp-choice{
+  padding:10px 26px;
+  border-radius:999px;
+  border:1.4px solid var(--plum);
+  background:rgba(255,255,255,0.3);
+  color:var(--plum);
+  font-family:'Cormorant Garamond', serif;
+  font-size:0.95rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:background .25s ease, color .25s ease;
+}
+.rsvp-choice.selected,
+.rsvp-choice:hover{
+  background:var(--plum);
+  color:#fff;
+}
+.rsvp-confirm-btn{
+  margin-top:26px;
+}
+.rsvp-confirm-btn:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+  pointer-events:none;
+}
+.rsvp-thankyou{
+  font-family:'Great Vibes', cursive;
+  font-size:1.8rem;
+  color:var(--plum);
+  margin-top:10px;
+}
+.rsvp-error{
+  margin-top:16px;
+  font-size:0.9rem;
+  color:#8a3b3b;
+}

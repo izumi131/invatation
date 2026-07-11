@@ -1,0 +1,65 @@
+// Name of the tab that should receive RSVP responses.
+// This is a DIFFERENT tab from your guest list — create it fresh, don't
+// point this at the guest list sheet, or it'll corrupt that data.
+var RESPONSES_SHEET_NAME = 'RSVP Responses';
+
+function doPost(e) {
+  var lock = LockService.getScriptLock();
+
+  try {
+    lock.waitLock(10000); // avoid two simultaneous submits corrupting the sheet
+
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName(RESPONSES_SHEET_NAME);
+    if (!sheet) {
+      throw new Error('Sheet "' + RESPONSES_SHEET_NAME + '" not found. Create a tab with that exact name first.');
+    }
+
+    var data = JSON.parse(e.postData.contents);
+
+    var name = (data.name || '').toString().trim();
+    if (!name) {
+      throw new Error('Missing name.');
+    }
+    var normalized = name.toLowerCase();
+
+    // look for an existing row for this guest (case-insensitive) so repeat
+    // submissions update their answer instead of creating duplicate rows
+    var values = sheet.getDataRange().getValues();
+    var rowIndex = -1;
+    for (var i = 1; i < values.length; i++) { // skip header row
+      var existingName = (values[i][1] || '').toString().trim().toLowerCase();
+      if (existingName === normalized) {
+        rowIndex = i + 1; // sheet rows are 1-indexed
+        break;
+      }
+    }
+
+    var rowData = [
+      new Date(),
+      name,
+      data.matched ? 'Yes' : 'No',
+      data.seatsAllowed || '',
+      data.plusOneName || '',
+      data.response || ''
+    ];
+
+    if (rowIndex > 0) {
+      sheet.getRange(rowIndex, 1, 1, rowData.length).setValues([rowData]);
+    } else {
+      sheet.appendRow(rowData);
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'success', updated: rowIndex > 0 }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: err.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } finally {
+    lock.releaseLock();
+  }
+}

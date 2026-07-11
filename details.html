@@ -59,16 +59,19 @@
 
     <hr class="divider"/>
 
-    <p class="surprise">
-      We have reserved <strong>1</strong> seat/s for you.<br/>
-      Kindly confirm your attendance on or before <strong>August 1, 2026</strong>.
-    </p>
-
-    <a href="#" class="details-btn rsvp-btn">RSVP Here</a>
+    <div class="rsvp-widget" id="rsvpWidget">
+      <p class="surprise">Enter your name exactly as it appears on your invitation.</p>
+      <input type="text" id="rsvpNameInput" class="rsvp-input" placeholder="Your full name" autocomplete="off"/>
+      <div>
+        <button type="button" id="rsvpFindBtn" class="details-btn">Find My Invitation</button>
+      </div>
+      <div id="rsvpResult" class="rsvp-result"></div>
+    </div>
   </div>
 </section>
 
 <script src="js/function.js"></script>
+<script src="js/rsvp.js"></script>
 
 </body>
 </html>
