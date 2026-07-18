@@ -74,8 +74,9 @@ const GUEST_LIST_RAW = [
   { displayName: "Nica Musni", seats: 1 },
   { displayName: "Bhing Obanil", seats: 1 },
   { displayName: "Lara DeVera", seats: 2 },
-  { displayName: "Ate Maricar", seats: 3 },
-  { displayName: "Ate Ruby", seats: 2 }
+  { displayName: "Ate Maricar Barza", seats: 3 },
+  { displayName: "Ate Ruby Burbos", seats: 2 },
+  { displayName: "Zandra Mendoza", seats: 1 }
 ];
 
 // Deployed Google Apps Script Web App URL — submissions post here and land
