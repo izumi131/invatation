@@ -85,15 +85,16 @@ const GUEST_LIST_RAW = [
 ];
 
 // Deployed Google Apps Script Web App URL — submissions post here and land
-// as rows in the "RSVP Responses" tab.
-const RSVP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbykwWKsVC6Ri6cwYhg49LB7lizEQ4oGVuSb580Jxiv2ncw93frO7_Lg5ZVFSMN-uxt6_A/exec";
+// as rows in the "RSVP Responses" tab. Same deployment also serves the live
+// guest list below (doPost + doGet live in the same script).
+const RSVP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwo5kSJkF4Nrw6ShGuFQgS56i_nuF-AB0keLAstTSZcOq3Yk0LeF3VmnkI1nKzHhrbTnQ/exec";
 
 // Live guest list source — same Apps Script project as RSVP_SCRIPT_URL above,
 // but hit with GET instead of POST. It reads the guest list sheet privately
 // (nothing is published/public) and returns just name + seat count. Requires
 // a matching secret key set in the script's GUEST_LIST_SECRET_KEY.
-const GUEST_LIST_SCRIPT_URL = "";
-const GUEST_LIST_SCRIPT_KEY = "";
+const GUEST_LIST_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwo5kSJkF4Nrw6ShGuFQgS56i_nuF-AB0keLAstTSZcOq3Yk0LeF3VmnkI1nKzHhrbTnQ/exec";
+const GUEST_LIST_SCRIPT_KEY = "sabine";
 
 const RSVP_LOCAL_KEY_PREFIX = "rsvp_response_";
 

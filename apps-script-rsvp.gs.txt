@@ -12,7 +12,7 @@ var GUEST_LIST_SHEET_NAME = '18th Birthday Guest List';
 // stumbles on the URL — the site appends ?key=... when it fetches. Change
 // this to your own random string, then update GUEST_LIST_SCRIPT_KEY in
 // js/rsvp.js to match exactly.
-var GUEST_LIST_SECRET_KEY = 'CHANGE_ME_TO_SOMETHING_RANDOM';
+var GUEST_LIST_SECRET_KEY = 'sabine';
 
 // Returns the guest list as JSON — only name + seat count, nothing else
 // from the sheet is exposed. Requires the correct ?key= to respond.
