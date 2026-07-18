@@ -278,6 +278,17 @@ body{
 .card.visible{ opacity:1; transform:translateY(0); }
 .card + .card{ margin-top:0; }
 
+/* Pure-CSS entrance animation for details.html / ceremony.html — runs on
+   page load automatically, no JS/scroll dependency, so it can't fail to
+   trigger the way the old IntersectionObserver reveal sometimes did. */
+#cardDetails, #cardCeremony{
+  animation:cardEntrance 1s ease-out;
+}
+@keyframes cardEntrance{
+  from{ opacity:0; transform:translateY(30px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
 .details-btn{
   display:inline-block;
   margin-top:38px;
