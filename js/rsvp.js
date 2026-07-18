@@ -88,12 +88,12 @@ const GUEST_LIST_RAW = [
 // as rows in the "RSVP Responses" tab.
 const RSVP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbykwWKsVC6Ri6cwYhg49LB7lizEQ4oGVuSb580Jxiv2ncw93frO7_Lg5ZVFSMN-uxt6_A/exec";
 
-// Live guest list source — publish the "18th Birthday Guest List" tab as CSV
-// (Google Sheet > File > Share > Publish to web > select that tab > CSV >
-// Publish) and paste the resulting link here. When this is set, the site
-// pulls the guest list straight from the sheet on every page load — no more
-// manual copy/paste or git push needed when the sheet changes.
-const GUEST_LIST_CSV_URL = "";
+// Live guest list source — same Apps Script project as RSVP_SCRIPT_URL above,
+// but hit with GET instead of POST. It reads the guest list sheet privately
+// (nothing is published/public) and returns just name + seat count. Requires
+// a matching secret key set in the script's GUEST_LIST_SECRET_KEY.
+const GUEST_LIST_SCRIPT_URL = "";
+const GUEST_LIST_SCRIPT_KEY = "";
 
 const RSVP_LOCAL_KEY_PREFIX = "rsvp_response_";
 
@@ -122,61 +122,18 @@ function buildGuestList(rawArray) {
 // (and if) the CSV fetch below succeeds
 let GUEST_LIST = buildGuestList(GUEST_LIST_RAW);
 
-// --- parse one line of CSV, respecting quoted fields that may contain commas ---
-function parseCSVLine(line) {
-  const cells = [];
-  let cur = "";
-  let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (inQuotes) {
-      if (c === '"') {
-        if (line[i + 1] === '"') { cur += '"'; i++; }
-        else inQuotes = false;
-      } else {
-        cur += c;
-      }
-    } else {
-      if (c === '"') inQuotes = true;
-      else if (c === ",") { cells.push(cur); cur = ""; }
-      else cur += c;
-    }
-  }
-  cells.push(cur);
-  return cells;
-}
-
-// The sheet has section headers ("FRIENDS", "TOTAL GUEST EXPECTED", etc.)
-// mixed in with guest rows. A real guest row is the only kind where column A
-// is a plain guest number and column B has a name — everything else is skipped.
-function parseGuestListCSV(csvText) {
-  const lines = csvText.split(/\r?\n/);
-  const guests = [];
-  for (const line of lines) {
-    if (!line.trim()) continue;
-    const cells = parseCSVLine(line);
-    const num = (cells[0] || "").trim();
-    const name = (cells[1] || "").trim();
-    const extraRaw = (cells[2] || "").trim();
-    if (!/^\d+$/.test(num) || !name) continue; // not a numbered guest row — skip
-    const additional = parseInt(extraRaw, 10);
-    const seats = 1 + (isNaN(additional) ? 0 : additional);
-    guests.push({ displayName: name, seats });
-  }
-  return guests;
-}
-
 function loadLiveGuestList() {
-  if (!GUEST_LIST_CSV_URL) return; // not configured yet — stick with fallback
-  fetch(GUEST_LIST_CSV_URL, { cache: "no-store" })
+  if (!GUEST_LIST_SCRIPT_URL) return; // not configured yet — stick with fallback
+  const url = GUEST_LIST_SCRIPT_URL + "?key=" + encodeURIComponent(GUEST_LIST_SCRIPT_KEY);
+  fetch(url, { cache: "no-store" })
     .then((res) => {
       if (!res.ok) throw new Error("bad response " + res.status);
-      return res.text();
+      return res.json();
     })
-    .then((csvText) => {
-      const parsed = parseGuestListCSV(csvText);
-      if (parsed.length > 0) {
-        GUEST_LIST = buildGuestList(parsed);
+    .then((json) => {
+      if (json.status !== "success") throw new Error(json.message || "unknown error");
+      if (json.guests && json.guests.length > 0) {
+        GUEST_LIST = buildGuestList(json.guests);
       }
     })
     .catch((err) => {

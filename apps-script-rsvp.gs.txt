@@ -3,6 +3,58 @@
 // point this at the guest list sheet, or it'll corrupt that data.
 var RESPONSES_SHEET_NAME = 'RSVP Responses';
 
+// Name of your actual guest list tab (the one with the numbered rows,
+// names, and additional-guest counts). Change this if your tab isn't
+// named exactly this.
+var GUEST_LIST_SHEET_NAME = '18th Birthday Guest List';
+
+// Shared secret so the guest list endpoint isn't wide open to anyone who
+// stumbles on the URL — the site appends ?key=... when it fetches. Change
+// this to your own random string, then update GUEST_LIST_SCRIPT_KEY in
+// js/rsvp.js to match exactly.
+var GUEST_LIST_SECRET_KEY = 'CHANGE_ME_TO_SOMETHING_RANDOM';
+
+// Returns the guest list as JSON — only name + seat count, nothing else
+// from the sheet is exposed. Requires the correct ?key= to respond.
+function doGet(e) {
+  var key = e && e.parameter ? e.parameter.key : '';
+  if (key !== GUEST_LIST_SECRET_KEY) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: 'Unauthorized' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(GUEST_LIST_SHEET_NAME);
+  if (!sheet) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: 'Sheet "' + GUEST_LIST_SHEET_NAME + '" not found.' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  var values = sheet.getDataRange().getValues();
+  var guests = [];
+
+  for (var i = 0; i < values.length; i++) {
+    var num = values[i][0];
+    var name = (values[i][1] || '').toString().trim();
+    var extraRaw = values[i][2];
+
+    // a real guest row has a plain number in column A and a name in column B —
+    // section headers ("FRIENDS"), totals, and blank rows all get skipped
+    var isNumber = typeof num === 'number' || (/^\d+$/.test((num || '').toString().trim()));
+    if (!isNumber || !name) continue;
+
+    var extra = parseInt(extraRaw, 10);
+    var seats = 1 + (isNaN(extra) ? 0 : extra);
+    guests.push({ displayName: name, seats: seats });
+  }
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'success', guests: guests }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
 function doPost(e) {
   var lock = LockService.getScriptLock();
 
