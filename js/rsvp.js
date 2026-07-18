@@ -15,6 +15,9 @@ const GUEST_LIST_RAW = [
   { displayName: "Lean James Ayap", seats: 1 },
   { displayName: "Ate Shane", seats: 2 },
   { displayName: "Marione Arthur Perez", seats: 2 },
+  { displayName: "Erwin Jose Alejo", seats: 1 },
+  { displayName: "Alfonso Alejo", seats: 1 },
+  { displayName: "Ninang Marilou", seats: 2 },
 
   // Friends
   { displayName: "Kelly Allyson Anyayahan", seats: 1 },
@@ -53,14 +56,14 @@ const GUEST_LIST_RAW = [
   // Close Family
   { displayName: "Tita Gene De Castro", seats: 2 },
   { displayName: "Tita Fhe Natividad", seats: 2 },
-  { displayName: "Umpe JD", seats: 2 },
+  { displayName: "Umpe Josie Driz", seats: 2 },
   { displayName: "Tita Donna Dimaandal", seats: 4 },
-  { displayName: "Tita Elizabeth Macalalad", seats: 2 },
+  { displayName: "Tita Beth Macalalad", seats: 2 },
   { displayName: "Ninong Alvin", seats: 3 },
   { displayName: "Ninang Felly", seats: 1 },
-  { displayName: "Ninang Rea", seats: 2 },
+  { displayName: "Ninang Rhea", seats: 2 },
   { displayName: "Ninang Arlene Castor", seats: 2 },
-  { displayName: "Ninong Paul", seats: 3 },
+  { displayName: "Ninong Paul Manlongat", seats: 3 },
   { displayName: "Ninang Faith Villena", seats: 2 },
 
   // Additional Guests
