@@ -124,9 +124,9 @@ function buildGuestList(rawArray) {
 let GUEST_LIST = buildGuestList(GUEST_LIST_RAW);
 
 function loadLiveGuestList() {
-  if (!GUEST_LIST_SCRIPT_URL) return; // not configured yet — stick with fallback
+  if (!GUEST_LIST_SCRIPT_URL) return Promise.resolve(); // not configured — stick with fallback
   const url = GUEST_LIST_SCRIPT_URL + "?key=" + encodeURIComponent(GUEST_LIST_SCRIPT_KEY);
-  fetch(url, { cache: "no-store" })
+  return fetch(url, { cache: "no-store" })
     .then((res) => {
       if (!res.ok) throw new Error("bad response " + res.status);
       return res.json();
@@ -141,13 +141,24 @@ function loadLiveGuestList() {
       console.warn("Live guest list fetch failed, using fallback list.", err);
     });
 }
-loadLiveGuestList();
 
 const rsvpNameInput = document.getElementById("rsvpNameInput");
 const rsvpFindBtn = document.getElementById("rsvpFindBtn");
 const rsvpResult = document.getElementById("rsvpResult");
 
 if (rsvpFindBtn) {
+  // don't let anyone search until the live guest list has finished loading
+  // (or failed and fallen back) — avoids a race where "Find" runs against
+  // the stale hardcoded list for the split second before the fetch resolves
+  const originalBtnText = rsvpFindBtn.textContent;
+  rsvpFindBtn.disabled = true;
+  rsvpFindBtn.textContent = "Loading guest list...";
+
+  loadLiveGuestList().finally(() => {
+    rsvpFindBtn.disabled = false;
+    rsvpFindBtn.textContent = originalBtnText;
+  });
+
   rsvpFindBtn.addEventListener("click", handleFind);
   rsvpNameInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") handleFind();
