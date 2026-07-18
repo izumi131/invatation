@@ -263,7 +263,7 @@ body{
   border-image-slice:230 90 fill;
   border-image-repeat:round;
   border-radius:6px;
-  padding:22px 18px;
+  padding:22px 38px;
   text-align:center;
   box-shadow:0 30px 80px rgba(20,8,35,0.6);
   opacity:0;
@@ -319,6 +319,48 @@ body{
 }
 .back-link:hover{ opacity:1; }
 
+/* ---------- Ceremony page ---------- */
+#cardCeremony .eyebrow{
+  font-size:1.3rem;
+}
+#cardCeremony > .surprise{
+  font-size:1.4rem;
+}
+
+/* ---------- Details page ---------- */
+#cardDetails .eyebrow{
+  font-size:1.3rem;
+}
+
+/* ---------- Framed photo (laced border reused from the card art) ---------- */
+.photo-frame{
+  display:block;
+  width:200px;
+  max-width:70%;
+  margin:6px auto 24px;
+  border-style:solid;
+  border-width:42px 20px;
+  border-image-source:url('pics/lavender_border.png');
+  border-image-slice:230 90 fill;
+  border-image-repeat:round;
+  box-shadow:0 15px 40px rgba(20,8,35,0.45);
+  position:relative;
+  z-index:2;
+}
+.photo-frame img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
+
+img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
+
 .resume-music-btn{
   position:fixed;
   bottom:22px;
@@ -357,19 +399,19 @@ body{
 .eyebrow{
   letter-spacing:4px;
   text-transform:uppercase;
-  font-size:0.8rem;
+  font-size:0.92rem;
   color:var(--ink);
   opacity:0.75;
   margin-bottom:18px;
 }
 .invite-line{
-  font-size:1.15rem;
+  font-size:1.3rem;
   color:var(--ink);
   margin-bottom:6px;
 }
 .num-18{
   font-family:'Playfair Display', serif;
-  font-size:3.4rem;
+  font-size:3.6rem;
   font-style:italic;
   color:var(--plum);
   text-shadow:0 0 18px rgba(255,255,255,0.6);
@@ -377,7 +419,7 @@ body{
 }
 .name-placeholder{
   font-family:'Great Vibes', cursive;
-  font-size:3.4rem;
+  font-size:3.6rem;
   color:var(--plum);
   margin:14px 0 22px;
   text-shadow:0 0 14px rgba(255,255,255,0.5);
@@ -387,15 +429,24 @@ body{
 }
 .details{
   margin:26px 0;
-  font-size:1.15rem;
+  font-size:1.3rem;
   line-height:1.9;
   color:var(--ink);
+}
+.venue-address{
+  display:block;
+  font-size:0.75rem;
+  font-style:italic;
+  letter-spacing:0.5px;
+  color:var(--violet);
+  opacity:0.85;
+  margin-top:2px;
 }
 .details .label{
   display:block;
   letter-spacing:2px;
   text-transform:uppercase;
-  font-size:0.72rem;
+  font-size:1rem;
   color:var(--violet);
   margin-top:14px;
 }
@@ -408,7 +459,7 @@ hr.divider{
 .surprise{
   font-family:'Cormorant Garamond', serif;
   font-style:italic;
-  font-size:1.15rem;
+  font-size:1.3rem;
   line-height:1.85;
   color:var(--ink);
   opacity:0.95;
@@ -417,8 +468,75 @@ hr.divider{
   display:block;
   margin-top:16px;
   font-family:'Great Vibes', cursive;
-  font-size:1.6rem;
+  font-size:1.7rem;
   color:var(--plum);
+}
+
+.qr-block{
+  margin-top:30px;
+  text-align:center;
+}
+.qr-code{
+  width:150px;
+  height:150px;
+  margin:10px auto 0;
+  display:block;
+  border-radius:8px;
+  border:6px solid rgba(255,255,255,0.6);
+  box-shadow:0 8px 20px rgba(20,8,35,0.3);
+}
+
+/* ---------- Ceremony role lists ---------- */
+.role-section{
+  margin:28px 0;
+  text-align:center;
+}
+.chapter-title{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:600;
+  font-size:1.1rem;
+  letter-spacing:1px;
+  color:var(--violet);
+  text-align:center;
+  margin-bottom:6px;
+}
+.role-title{
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+  font-size:1.7rem;
+  color:var(--plum);
+  text-align:center;
+  text-shadow:0 0 14px rgba(255,255,255,0.5);
+  margin-bottom:4px;
+}
+.role-subtitle{
+  text-align:center;
+  font-size:0.78rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--violet);
+  margin-bottom:16px;
+}
+.role-section .role-title + .role-grid,
+.role-section .role-subtitle + .role-grid{
+  margin-top:16px;
+}
+.role-grid{
+  column-count:2;
+  column-gap:26px;
+}
+.role-item{
+  font-size:1.05rem;
+  color:var(--ink);
+  line-height:1.4;
+  margin-bottom:10px;
+  text-align:center;
+  break-inside:avoid;
+  -webkit-column-break-inside:avoid;
+}
+@media (max-width:420px){
+  .role-grid{ column-count:1; }
 }
 
 /* ---------- Details section ---------- */

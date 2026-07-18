@@ -56,11 +56,26 @@ const GUEST_LIST_RAW = [
   { displayName: "Umpe JD", seats: 2 },
   { displayName: "Tita Donna Dimaandal", seats: 4 },
   { displayName: "Tita Elizabeth Macalalad", seats: 2 },
+  { displayName: "Ninong Alvin", seats: 3 },
   { displayName: "Ninang Felly", seats: 1 },
   { displayName: "Ninang Rea", seats: 2 },
   { displayName: "Ninang Arlene Castor", seats: 2 },
   { displayName: "Ninong Paul", seats: 3 },
-  { displayName: "Ninang Faith Villena", seats: 2 }
+  { displayName: "Ninang Faith Villena", seats: 2 },
+
+  // Additional Guests
+  { displayName: "Carlo De Joya", seats: 2 },
+  { displayName: "Annabelle Blanco", seats: 1 },
+  { displayName: "Vivian Banola", seats: 1 },
+  { displayName: "Evalyn Cruz-Reyes", seats: 1 },
+  { displayName: "Shana Marie Bantayan", seats: 1 },
+  { displayName: "Jessa Coquia", seats: 1 },
+  { displayName: "Jez Maalindog", seats: 1 },
+  { displayName: "Nica Musni", seats: 1 },
+  { displayName: "Bhing Obanil", seats: 1 },
+  { displayName: "Lara DeVera", seats: 2 },
+  { displayName: "Ate Maricar", seats: 3 },
+  { displayName: "Ate Ruby", seats: 2 }
 ];
 
 // Deployed Google Apps Script Web App URL — submissions post here and land
